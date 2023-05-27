@@ -13,7 +13,6 @@ void solution() {
 }
 
 int main(int argc, char* argv[]) {
-    cout << endl;
     auto start = chrono::high_resolution_clock::now();
 
     // string s, line;
