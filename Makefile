@@ -10,4 +10,4 @@ make:
 	g++ new.cpp
 
 clean:
-	rm -rf *.out
+	rm -r -f *.out
