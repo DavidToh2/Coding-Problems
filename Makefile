@@ -7,7 +7,7 @@ run:
 	make make && ./a.out && make clean
 
 make:
-	g++ new.cpp
+	g++ -std=c++20 -Ofast new.cpp
 
 clean:
 	rm -r -f *.out

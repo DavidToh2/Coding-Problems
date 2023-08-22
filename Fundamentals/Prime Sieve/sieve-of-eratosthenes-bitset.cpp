@@ -12,36 +12,46 @@ using namespace std;
 Sieve of Eratosthenes. Implemented using a bitset.
 
 Execution time:
-10^7 numbers: 630ms
-10^6 numbers: 124ms
-10^5 numbers: 19ms
+10^7 numbers: 16ms
+10^6 numbers: 1.6ms
 
 */
 
-long long primeSieve() {
+int primeSieve() {
     
-    const long long ncount = pow(10, 5);
+    const int ncount = pow(10, 7);
 
-    bitset<ncount+1> *primesPointer = new bitset<ncount+1>;
-    bitset<ncount+1> primes = *primesPointer;
-    primes.set();
-    for (long long i=4; i<=ncount; i+=2) {
-        primes[i] = 0;
-    }
-    for (long long i=3; pow(i, 2)<=ncount; i+=2) {
-        if (!primes[i]) {continue;}
-        for (long long j=2; i*j<=ncount; j++) {
-            primes[i*j] = 0;
+    // The {} initialises all bitset values to 1
+    auto *pb = new bitset<ncount+1>{};
+    auto primes = (*pb).set();
+
+    for (int i=3; pow(i, 2)<=ncount; i+=2) {
+        if (primes[i]) {
+
+            // We sieve the numbers with smallest prime factor i.
+            for (int j=i; i*j<=ncount; j+=1) {
+                primes[i*j] = false;
+            }
         }
     }
 
-    long long pcount = primes.count() - 2;
-    delete primesPointer;
+    int pcount = 1;
+    for (int i=3; i<=ncount; i+=2) {
+        if (primes[i]) {
+            pcount++;
+        }
+    }
+
+    delete pb;
 
     return pcount;
 }
 
 int main(int argc, char* argv[]) {
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     cout << endl;
     auto start = chrono::high_resolution_clock::now();
 
