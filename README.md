@@ -1,6 +1,6 @@
 Solutions to various Competitive Programming-style problems I attempted.
 
-`make new` to start a new problem.
+`make new` to start a new problem. This uses `template.cpp`, which provides timing and (optional) getline code.
 
 `make make` to compile code (to `a.out`).
 
