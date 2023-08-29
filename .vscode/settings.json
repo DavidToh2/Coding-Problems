@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "bitset": "cpp",
-        "cmath": "cpp",
-        "chrono": "cpp",
-        "iostream": "cpp"
-    }
-}
