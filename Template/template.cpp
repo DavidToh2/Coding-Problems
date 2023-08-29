@@ -1,7 +1,4 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
 #include <chrono>
 
 using namespace std;
