@@ -7,9 +7,9 @@ Answer: $4921370551019052$
 ## Solution
 
 The quadratic equation $x^2 + xy + (41y^2 - n) = 0$ has discriminant
-$$ D = y^2 - 4(41y^2 - n) = 4n - 163y^2 $$
+$$D = y^2 - 4(41y^2 - n) = 4n - 163y^2$$
 For $x$ to also be integral, $D$ must be a perfect square, so we may let $D = z^2$ where $z \geq 0$. Then
-$$ x = \frac{-y \pm z}{2} $$
+$$x = \frac{-y \pm z}{2}$$
 meaning that, for every pair $(y, z)$ of non-zero positive integers satisfying $163y^2 + z^2 = 4n$, we are able to obtain four pairs of solutions $(x, y)$ by swapping the signs of $y$ and $z$. 
 
 For those pairs $(y, z)$ of nonnegative integers where one of the two terms is zero, we will be able to obtain two pairs of solutions by swapping the signs of the nonzero term.

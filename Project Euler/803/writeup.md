@@ -1,7 +1,7 @@
 ## Problem 803
 
 The objective of this problem is to reverse-engineer the starting term of the pseudo-random number generator
-$$ a_{n+1} = Ca_{n} + 11 \pmod{2^{48}}, \quad b_n = \left\lfloor\frac{a_n}{2^{16}}\right\rfloor \pmod{52}$$
+$$a_{n+1} = Ca_{n} + 11 \pmod{2^{48}}, \quad b_n = \left\lfloor\frac{a_n}{2^{16}}\right\rfloor \pmod{52}$$
 where $C = 25214903917$, given a sequence of 9 terms $b_i$; and also to determine the smallest distance between two members of the sequence.
 
 Answer: $9300900470636$
@@ -9,7 +9,7 @@ Answer: $9300900470636$
 ## Attempt at Reverse Engineering
 
 Define $f(x) = Cx + 11 \pmod{2^{48}}$. We may split each term of the sequence into its first 32 and last 16 bits, like so:
-$$ a_n = x_n \cdot 2^{16} + y_n $$
+$$a_n = x_n \cdot 2^{16} + y_n$$
 
 Each term of the sequence can be calculated from its previous term like so:
 
@@ -52,13 +52,13 @@ From Part 1, we obtain the constants
 - "LuckyText": $a_n = 160163661474491$
 
 Our objective is to determine the value of $n$. We perform a small algebraic trick:
-$$ a_{k+1} - a_k \equiv (Ca_k + 11) - (Ca_{k-1} + 11) \equiv C(a_k - a_{k-1}) \pmod{2^{48}} $$
+$$a_{k+1} - a_k \equiv (Ca_k + 11) - (Ca_{k-1} + 11) \equiv C(a_k - a_{k-1}) \pmod{2^{48}}$$
 
 Hence, we compute $A = a_1 - a_0 = 99607973670047, B = a_{n+1} - a_{n} = 151992572250351$. We require the smallest positive integer $n$ such that
-$$ A \cdot C^{n} \equiv B \pmod{2^{48}} $$
+$$A \cdot C^{n} \equiv B \pmod{2^{48}}$$
 
 We will recursively find positive integers $n_i$ such that
-$$ A \cdot C^{n_i} \equiv B \pmod{2^{i}}, \quad 1 \leq i \leq 48 $$
+$$A \cdot C^{n_i} \equiv B \pmod{2^{i}}, \quad 1 \leq i \leq 48$$
 
 For this, we first note that for any odd $x$, we have $x^{\phi(2^{i})} = x^{2^{i-1}} \equiv 1 \pmod{2^i}$. This means that $ord_{2^i}(x)$ is a power of 2 that is at most $2^{i-1}$. Additionally, note that $ord_{2^i}(x) \mid ord_{2^{i+1}}(x)$.
 
@@ -68,7 +68,7 @@ Hence, we define the following recursive algorithm:
 - having found $n_i$, we will now find $n_{i+1} = n_i + k\cdot ord_{2^{i}}(C)$. (This is because the value of the LHS $\pmod{2^i}$ cannot change.)
 
 For the first part of this algorithm, raw computation tells us that
-$$ ord_{2^i}(C) = 2^{i-2} \quad  \forall 2 \leq i \leq 48. $$
+$$ord_{2^i}(C) = 2^{i-2} \quad  \forall 2 \leq i \leq 48.$$
 
 This can be used in the second part: if $A\cdot C^{n_i} \equiv B \pmod{2^i}$ but not $\pmod{2^{i+1}}$, then we simply need to add one copy of $ord_{2^i}(C)$, which is $2^{i-2}$, to the exponent $n_i$, to get to $n_{i+1}$.
 
