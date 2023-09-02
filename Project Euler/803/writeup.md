@@ -11,12 +11,12 @@ Answer: $9300900470636$
 Define $f(x) = Cx + 11 \pmod{2^{48}}$. We may split each term of the sequence into its first 32 and last 16 bits, like so:
 $$a_n = x_n \cdot 2^{16} + y_n$$
 
-Each term of the sequence can be calculated from its previous term like so:
+Each term of the sequence, $a_{n+1}=f(a_n)$, can be calculated from its previous term $a_n$ like so:
 
 1. Calculate $f(y_n)$. This is in turn split into two parts:
    - The last 16 bits give $y_{n+1}$;
    - The "overflow bits" $overflow(y_n)$ will spill over into the first 32 bits of the next term.
-2. Calculate $Cx_n + overflow(y_n) \pmod{32}$, which gives $x_{n+1}$.
+2. Calculate $Cx_n + overflow(y_n) \pmod{2^{32}}$, which gives $x_{n+1}$.
 
 For each $0 \leq y_n < 65535 = 2^{16} - 1$, the corresponding $y_{n+1}$ and $overflow(y_n)$ values in step 1 can be precomputed, allowing us to focus on step 2.
 

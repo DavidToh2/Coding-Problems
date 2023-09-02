@@ -33,6 +33,6 @@ We may also perform a Mobius transform, which tells us
 $$f(n) = \sum_{d \mid n} \mu(d) 2^{\frac{n}{d} - 1}$$
 where $\mu(d)$ is the Mobius function. Summing then gives us this following, direct formula for $P(n)$.
 
-$$\begin{align*} P(n) & = \sum_{k=1}^{n} \sum_{d \mid k} \mu(d)2^{\frac{k}{d} - 1} = \sum_{d=1}^{n}\mu(d)\sum_{d \mid k, k \leq n}2^{\frac{k}{d} - 1} \\ &= \sum_{d=1}^{n}\mu(d)\left(\sum_{k=1}^{\lfloor\frac{n}{d}\rfloor}2^{k-1}\right) = \sum_{d=1}^{n}\mu(d)\left(2^{\lfloor\frac{n}{d}\rfloor}-1\right) \end{align*}$$
+$$\begin{align*} P(n) & = \sum_{k=1}^{n} \sum_{d \mid k} \mu(d)2^{\frac{k}{d} - 1} = \sum_{d=1}^{n}\mu(d)\sum_{d \mid k, k \leq n}2^{\frac{k}{d} - 1} \\ & = \sum_{d=1}^{n}\mu(d)\left(\sum_{k=1}^{\lfloor\frac{n}{d}\rfloor}2^{k-1}\right) = \sum_{d=1}^{n}\mu(d)\left(2^{\lfloor\frac{n}{d}\rfloor}-1\right) \end{align*}$$
 
 Unfortunately, computing the Mobius function is not very time-efficient (unless there's some hack that I'm not aware of), so this solution was not used.
