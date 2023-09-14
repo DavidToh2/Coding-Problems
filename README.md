@@ -1,5 +1,9 @@
 Solutions to various Competitive Programming-style problems I attempted.
 
+Project Euler problem list: 801, 802, 803, 804
+
+## Template for long problems:
+
 `make new` to start a new problem. This uses `template.cpp`, which provides timing and (optional) getline code.
 
 `make make` to compile code (to `a.out`).
