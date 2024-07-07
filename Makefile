@@ -1,7 +1,7 @@
 .PHONY: new run make clean
 
 new:
-	cp ./Template/template.cpp . && mv ./template.cpp solution.cpp
+	cp ./Template/template_contest.cpp . && mv ./template_contest.cpp solution.cpp
 
 run:
 	make make && ./a.out && make clean
