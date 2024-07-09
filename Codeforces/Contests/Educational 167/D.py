@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 n, m = list(map(int, input().split()))
 A = list(map(int, input().split())) # cost of crafting
 B = list(map(int, input().split())) # return of smelting
@@ -23,33 +21,36 @@ while (i < len(Ds) - 1):
         i += 1
 D = None
 
-memo = {}
-    
+memo = [0]*1000000
+
 res = 0
 for j in range(m):
-    c, t = C[j], 0
-    T, arr = [], []
-    for i, (k, v) in enumerate(Ds):
-        if (c, i) in memo.keys():
-            t += memo[(c, i)]
-            break
-        if (c < v):
-            if (c < k):
-                break
-            i+=1
-            continue
-        else:
-            r = (c - v) // k + 1
-            T.append(r)
-            arr.append((c, i))
-            c -= (r * k)
-            i+=1
-    l = len(T)
-    for j in range(l-1, -1, -1):
-        t += T[j]
-        memo[arr[j]] = t
-    res += 2 * t
-    del T
-    del arr
+    c = C[j]
+    
+    # First weapon:
+    k, v = Ds[0]
+    if (c < v):
+        True
+    else:
+        r = (c - v) // k + 1
+        res += 2 * r
+        c -= (r * k)
+    
+    # Second weapon onward: memoise
+    c1, t1 = c, 0
+    if (memo[c] != 0):
+        t1 += memo[c]
+    else:
+        for k, v in Ds[1:]:
+            # print(f"{k}, {v}, {j}, {c}")
+            if (c < v):
+                if (c < k):
+                    break
+                continue
+            else:
+                r = (c - v) // k + 1
+                t1 += 2 * r
+                c -= (r * k)
+        memo[c1] = t1
+    res += t1
 print(res)
-
