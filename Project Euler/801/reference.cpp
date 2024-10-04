@@ -18,7 +18,7 @@ Improvements discovered:
 
 const long long L=1e16,R=1e16+1e4;
 const long long MOD=993353399;
-const int UP=sqrt(R+0.5);
+const int UP=1e8;
 bool sieve[UP+100];
 int primes[UP],top=0;
 void init()
